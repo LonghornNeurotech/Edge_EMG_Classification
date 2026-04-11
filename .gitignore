@@ -1,6 +1,6 @@
 .DS_Store
 *.npy
-*.onnx
 __pycache__/
 *.pyc
 *.pth
+*.data
