@@ -27,38 +27,44 @@ The following steps were used to deploy and test the model locally on the Raspbe
 
 First, install `gdown` to download the model files and test data from Google Drive:
 
-bash
+```bash
 pip install gdown --break-system-packages
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
+```
 
 # Download the deployment folder
+```bash
 gdown --folder "https://drive.google.com/drive/folders/YOUR_DRIVE_LINK_HERE"
-
+```
 
 ### 2. Setup Python Virtual Environment
 
 To avoid `externally-managed-environment` (PEP 668) restrictions on the latest Raspberry Pi OS, create and activate a virtual environment:
 
-bash
+```bash
 python3 -m venv emg_env
 source emg_env/bin/activate
+```
 
 
 ### 3. Install Dependencies
 
 Install the required ONNX Runtime and NumPy packages inside the virtual environment:
 
-bash
+```bash
 pip install onnxruntime numpy
+```
+
 
 
 ### 4. Run Inference
 
 Navigate to the downloaded folder, ensure `run_inference.py` is present, and execute the benchmark:
 
-bash
+```bash
 cd Pi_Deployment
 python run_inference.py
+```
 
 
 ---
