@@ -15,7 +15,6 @@ We trained a **Multilayer Perceptron (MLP)** on time-domain engineered features 
 - **Deployment:** `run_inference.py` script to benchmark and run the quantized ONNX model locally on a Raspberry Pi.
 - **Models:** Exported FP32 and INT8 `.onnx` models for edge evaluation.
 
-> **Note:** The raw UCI EMG dataset is excluded from this repository due to size constraints.
 
 ---
 
