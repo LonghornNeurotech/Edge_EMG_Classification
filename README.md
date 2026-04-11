@@ -1,5 +1,5 @@
 # EMG Gesture Recognition on Edge
-**Developed by the Edge AI Team @ Longhorn Neurotech**
+**Developed by the Edge AI Team
 
 ## Overview
 
