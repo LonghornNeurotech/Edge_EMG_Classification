@@ -9,6 +9,13 @@ We trained a **Multilayer Perceptron (MLP)** on time-domain engineered features 
 
 ---
 
+## Dataset
+
+The dataset used for training the model. You can download it directly here: 
+[Download EMG Dataset (.csv files)](https://drive.google.com/file/d/1yex_U33Tre85HAOsq1Sc0tbeKmtqX9uQ/view?usp=sharing)
+
+---
+
 ## Repository Contents
 
 - **Notebooks:** Full pipeline including EDA, preprocessing, feature extraction, model training, Optuna hyperparameter tuning, and ONNX export.
