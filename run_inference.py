@@ -1,6 +1,9 @@
 import onnxruntime as ort
 import numpy as np
 import time
+import os
+
+SIGNAL_FILE = ".inference_running"
 
 X_test = np.load('X_test.npy').astype(np.float32)
 y_test = np.load('y_test.npy')
@@ -29,5 +32,27 @@ def evaluate_model(model_path, X, y):
     print(f"Total Time: {total_time:.2f} seconds")
     print(f"Avg Latency: {avg_latency_ms:.2f} ms\n")
 
-evaluate_model('emg_mlp_model.onnx', X_test, y_test)
-evaluate_model('emg_mlp_model_quantized.onnx', X_test, y_test)
+def run_monitored_inference(model_path):
+    # Signal the monitor by writing the model's exact name into the file
+    with open(SIGNAL_FILE, "w") as f:
+        f.write(model_path)
+    print(f">> Signal sent for {model_path}. Inference starting...\n")
+
+    try:
+        evaluate_model(model_path, X_test, y_test)
+    finally:
+        # Delete signal file to tell monitor this specific model finished
+        if os.path.exists(SIGNAL_FILE):
+            os.remove(SIGNAL_FILE)
+        print(f">> Signal removed. {model_path} benchmark complete.\n")
+
+# 1. Run Quantized (8-bit) First
+run_monitored_inference('emg_mlp_model_quantized.onnx')
+
+print(">> Waiting 15 seconds for Raspberry Pi CPU to cool down...\n")
+time.sleep(15)
+
+# 2. Run Regular (32-bit floating) Second
+run_monitored_inference('emg_mlp_model.onnx')
+
+print(">> All Benchmarks Complete!")
