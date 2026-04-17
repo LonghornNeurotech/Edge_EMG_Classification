@@ -30,7 +30,12 @@ def evaluate_model(model_path, X, y):
     
     print(f"Accuracy: {accuracy * 100:.2f}%")
     print(f"Total Time: {total_time:.2f} seconds")
-    print(f"Avg Latency: {avg_latency_ms:.2f} ms\n")
+    print(f"Avg Latency: {avg_latency_ms:.2f} ms")
+    
+    # snapshot of predictions
+    print("--- Snapshot of First 15 Predictions ---")
+    print(f"Predicted: {predictions[:15]}")
+    print(f"Actual:    {list(y[:15])}\n")
 
 def run_monitored_inference(model_path):
     # Signal the monitor by writing the model's exact name into the file
