@@ -29,21 +29,29 @@ The dataset used for training the model. You can download it directly here:
 
 The following steps were used to deploy and test the model locally on the Raspberry Pi.
 
-### 1. Download Model Artifacts
+### 1. Clone the Code Repository (GitHub)
 
-First, install `gdown` to download the model files and test data from Google Drive:
+First, clone this GitHub repository to your Raspberry Pi to get the most up-to-date deployment scripts (`run_inference.py` and `MLResourceUse.py`):
+
+```bash
+git clone https://github.com/LonghornNeurotech/Edge_EMG_Classification.git
+cd Edge_EMG_Classification
+```
+
+### 2. Download Model and Data Artifacts (Google Drive)
+
+Next, download your heavy model binaries (`.onnx` files) and the evaluation dataset (`.npy` files) from Google Drive directly into the folder you just cloned:
 
 ```bash
 pip install gdown --break-system-packages
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
 ```
 
-# Download the deployment folder
 ```bash
-gdown --folder "https://drive.google.com/drive/folders/YOUR_DRIVE_LINK_HERE"
+gdown --folder "https://drive.google.com/drive/folders/YOUR_DRIVE_LINK_HERE" -O ./
 ```
 
-### 2. Setup Python Virtual Environment
+### 3. Setup Python Virtual Environment
 
 To avoid `externally-managed-environment` (PEP 668) restrictions on the latest Raspberry Pi OS, create and activate a virtual environment:
 
@@ -53,7 +61,7 @@ source emg_env/bin/activate
 ```
 
 
-### 3. Install Dependencies
+### 4. Install Dependencies
 
 Install the required ONNX Runtime and NumPy packages inside the virtual environment:
 
@@ -63,15 +71,19 @@ pip install onnxruntime numpy
 
 
 
-### 4. Run Inference
+### 5. Run Inference
 
 Navigate to the downloaded folder, ensure `run_inference.py` is present, and execute the benchmark:
 
 ```bash
-cd Pi_Deployment
+cd Edge_EMG_Classification
 python run_inference.py
 ```
 
+> **Pro Tip (Quick Hotfixes):** If you push new code to GitHub and want to instantaneously overwrite your Pi's `run_inference.py` without dealing with git merges or re-cloning, simply pull the raw file directly:
+> ```bash
+> wget -O run_inference.py https://raw.githubusercontent.com/LonghornNeurotech/Edge_EMG_Classification/main/run_inference.py
+> ```
 
 ---
 
