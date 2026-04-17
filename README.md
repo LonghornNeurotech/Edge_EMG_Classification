@@ -80,7 +80,7 @@ cd Edge_EMG_Classification
 python run_inference.py
 ```
 
-> **Pro Tip (Quick Hotfixes):** If you push new code to GitHub and want to instantaneously overwrite your Pi's `run_inference.py` without dealing with git merges or re-cloning, simply pull the raw file directly:
+> **Tip:** If you push new code to GitHub and want to instantaneously overwrite your Pi's `run_inference.py` without dealing with git merges or re-cloning, simply pull the raw file directly:
 > ```bash
 > wget -O run_inference.py https://raw.githubusercontent.com/LonghornNeurotech/Edge_EMG_Classification/main/run_inference.py
 > ```
